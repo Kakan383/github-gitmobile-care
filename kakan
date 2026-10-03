@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shree Mobile Care</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#050807;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Background Glow */
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#00ff8830;
+    filter:blur(130px);
+    top:-180px;
+    left:-150px;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:400px;
+    height:400px;
+    background:#00bfff20;
+    filter:blur(130px);
+    right:-150px;
+    bottom:-100px;
+    z-index:-1;
+}
+
+/* Navbar */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:18px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#050807dd;
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #ffffff0d;
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:20px;
+    font-weight:800;
+}
+
+.logo-icon{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    background:#00ff88;
+    color:#00150b;
+    box-shadow:0 0 25px #00ff8860;
+}
+
+.logo span{
+    color:#00ff88;
+}
+
+nav a{
+    color:#aaa;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:14px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#00ff88;
+}
+
+/* Hero */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:120px 7% 70px;
+}
+
+.hero-container{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:60px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 15px;
+    border:1px solid #00ff8840;
+    border-radius:30px;
+    background:#00ff8810;
+    color:#00ff88;
+    font-size:12px;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-size:clamp(42px,6vw,75px);
+    line-height:1.05;
+    letter-spacing:-3px;
+}
+
+.hero h1 span{
+    color:#00ff88;
+    text-shadow:0 0 35px #00ff8850;
+}
+
+.hero p{
+    color:#999;
+    max-width:580px;
+    margin-top:22px;
+    line-height:1.8;
+    font-size:16px;
+}
+
+.buttons{
+    margin-top:32px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    padding:14px 23px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:#00ff88;
+    color:#00150b;
+    box-shadow:0 0 25px #00ff8830;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 40px #00ff8860;
+}
+
+.btn-dark{
+    border:1px solid #ffffff1c;
+    color:#ddd;
+    background:#ffffff06;
+}
+
+.btn-dark:hover{
+    border-color:#00ff88;
+    color:#00ff88;
+}
+
+/* Phone */
+
+.phone-area{
+    display:flex;
+    justify-content:center;
+}
+
+.phone{
+    width:270px;
+    height:540px;
+    padding:10px;
+    border-radius:40px;
+    background:linear-gradient(145deg,#222,#080808);
+    border:2px solid #ffffff18;
+
+    box-shadow:
+    0 0 0 8px #ffffff03,
+    0 30px 80px #000,
+    0 0 60px #00ff8818;
+
+    transform:rotate(5deg);
+    animation:float 4s ease-in-out infinite;
+}
+
+.phone-screen{
+    height:100%;
+    border-radius:32px;
+
+    background:
+    radial-gradient(circle at 70% 20%,#00ff8825,transparent 30%),
+    linear-gradient(145deg,#07120c,#020403);
+
+    padding:25px 18px;
+    position:relative;
+    overflow:hidden;
+}
+
+.camera{
+    width:80px;
+    height:23px;
+    background:#000;
+    border-radius:20px;
+    margin:auto;
+}
+
+.screen-content{
+    margin-top:65px;
+    text-align:center;
+}
+
+.repair-icon{
+    width:80px;
+    height:80px;
+    border:1px solid #00ff8850;
+    border-radius:25px;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:36px;
+
+    box-shadow:0 0 30px #00ff8820;
+}
+
+.screen-content h3{
+    margin-top:20px;
+    font-size:20px;
+}
+
+.screen-content p{
+    color:#777;
+    font-size:12px;
+    margin-top:8px;
+}
+
+.progress{
+    height:5px;
+    background:#ffffff10;
+    border-radius:20px;
+    margin-top:35px;
+    overflow:hidden;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    width:75%;
+    background:#00ff88;
+    box-shadow:0 0 15px #00ff88;
+    animation:progress 2s infinite alternate;
+}
+
+/* Sections */
+
+section{
+    padding:100px 7%;
+}
+
+.section-title{
+    text-align:center;
+    max-width:650px;
+    margin:0 auto 50px;
+}
+
+.section-title small{
+    color:#00ff88;
+    letter-spacing:2px;
+}
+
+.section-title h2{
+    font-size:38px;
+    margin-top:10px;
+}
+
+.section-title p{
+    color:#777;
+    margin-top:13px;
+    line-height:1.7;
+}
+
+/* Services */
+
+.services{
+    max-width:1200px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    padding:30px;
+
+    border:1px solid #ffffff0d;
+
+    background:
+    linear-gradient(145deg,#ffffff08,#ffffff02);
+
+    border-radius:22px;
+
+    transition:.35s;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#00ff8840;
+    box-shadow:0 20px 50px #000;
+}
+
+.card-icon{
+    width:55px;
+    height:55px;
+
+    border-radius:16px;
+
+    background:#00ff8810;
+    border:1px solid #00ff8820;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:25px;
+
+    margin-bottom:22px;
+}
+
+.card h3{
+    font-size:18px;
+}
+
+.card p{
+    color:#777;
+    font-size:13px;
+    line-height:1.7;
+    margin-top:10px;
+}
+
+/* About */
+
+.about{
+    max-width:1100px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.about-box{
+    padding:35px;
+    border-radius:25px;
+
+    background:#ffffff05;
+    border:1px solid #ffffff0d;
+}
+
+.about-box h3{
+    color:#00ff88;
+    margin-bottom:15px;
+}
+
+.about-box p{
+    color:#888;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.stat{
+    padding:25px;
+
+    background:#ffffff05;
+    border:1px solid #ffffff0d;
+
+    border-radius:18px;
+}
+
+.stat strong{
+    color:#00ff88;
+    font-size:28px;
+}
+
+.stat p{
+    color:#777;
+    margin-top:6px;
+    font-size:12px;
+}
+
+/* Contact */
+
+.contact-box{
+    max-width:900px;
+    margin:auto;
+
+    text-align:center;
+
+    padding:60px 25px;
+
+    border-radius:30px;
+
+    background:
+    radial-gradient(circle at center,#00ff8815,transparent 60%),
+    #ffffff05;
+
+    border:1px solid #00ff8820;
+}
+
+.contact-box h2{
+    font-size:40px;
+}
+
+.contact-box p{
+    color:#888;
+    margin:15px 0 25px;
+}
+
+.phone-number{
+    font-size:27px;
+    font-weight:700;
+    color:#00ff88;
+    text-decoration:none;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    padding:30px;
+
+    border-top:1px solid #ffffff0a;
+
+    color:#555;
+    font-size:12px;
+}
+
+/* Animation */
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0) rotate(5deg);
+    }
+
+    50%{
+        transform:translateY(-15px) rotate(5deg);
+    }
+
+}
+
+@keyframes progress{
+
+    from{
+        width:35%;
+    }
+
+    to{
+        width:90%;
+    }
+
+}
+
+/* Mobile */
+
+@media(max-width:850px){
+
+    nav{
+        padding:15px 5%;
+    }
+
+    nav .links{
+        display:none;
+    }
+
+    .hero{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero-container{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .hero p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .buttons{
+        justify-content:center;
+    }
+
+    .phone{
+        margin-top:30px;
+        width:230px;
+        height:460px;
+    }
+
+    .services{
+        grid-template-columns:1fr;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:75px 5%;
+    }
+
+    .section-title h2{
+        font-size:30px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+
+<div class="logo-icon">⚡</div>
+
+SHREE <span>MOBILE CARE</span>
+
+</div>
+
+<div class="links">
+
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero" id="home">
+
+<div class="hero-container">
+
+<div>
+
+<div class="badge">
+● PROFESSIONAL MOBILE REPAIR
+</div>
+
+<h1>
+Your Phone.<br>
+Our <span>Expertise.</span>
+</h1>
+
+<p>
+
+মোবাইলের ছোট সমস্যা থেকে শুরু করে
+Chip-Level Motherboard Repair পর্যন্ত —
+Shree Mobile Care-এ পাবেন যত্নসহকারে
+Professional Mobile Servicing Solution.
+
+</p>
+
+<div class="buttons">
+
+<a href="#services" class="btn btn-primary">
+Explore Services →
+</a>
+
+<a href="tel:01862505734" class="btn btn-dark">
+📞 Call Now
+</a>
+
+</div>
+
+</div>
+
+
+<!-- PHONE -->
+
+<div class="phone-area">
+
+<div class="phone">
+
+<div class="phone-screen">
+
+<div class="camera"></div>
+
+<div class="screen-content">
+
+<div class="repair-icon">
+🔧
+</div>
+
+<h3>
+Device Repair
+</h3>
+
+<p>
+Professional Care<br>
+Maximum Precision
+</p>
+
+<div class="progress">
+<span></span>
+</div>
+
+<p style="margin-top:15px;color:#00ff88;">
+SERVICE READY ✓
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<div class="section-title">
+
+<small>WHAT WE DO</small>
+
+<h2>
+Our Premium Services
+</h2>
+
+<p>
+Modern tools, experienced hands and
+careful diagnostics — সবকিছু এক জায়গায়।
+</p>
+
+</div>
+
+
+<div class="services">
+
+
+<div class="card">
+
+<div class="card-icon">🔧</div>
+
+<h3>
+Chip-Level Repair
+</h3>
+
+<p>
+Advanced motherboard diagnosis,
+IC repair এবং component-level servicing.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">💾</div>
+
+<h3>
+eMMC & UFS
+</h3>
+
+<p>
+Professional memory programming,
+data-related servicing এবং storage solution.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">💻</div>
+
+<h3>
+Software Solution
+</h3>
+
+<p>
+Flashing, firmware installation এবং
+software troubleshooting service.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">🔐</div>
+
+<h3>
+Device Lock Support
+</h3>
+
+<p>
+Authorized device account এবং
+software-lock troubleshooting support.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">📱</div>
+
+<h3>
+Display & Touch
+</h3>
+
+<p>
+Display, touch, connector এবং
+related hardware replacement.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">⚡</div>
+
+<h3>
+Charging & Dead Repair
+</h3>
+
+<p>
+Charging problem, power section এবং
+dead-device diagnosis & repair.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="section-title">
+
+<small>
+WHY SHREE MOBILE CARE
+</small>
+
+<h2>
+Repair With Precision.
+</h2>
+
+</div>
+
+
+<div class="about">
+
+<div class="about-box">
+
+<h3>
+We Treat Every Device Like Our Own.
+</h3>
+
+<p>
+
+একটি মোবাইল শুধু একটি ডিভাইস নয় —
+এর মধ্যে থাকে আপনার প্রয়োজনীয় data,
+memory এবং গুরুত্বপূর্ণ যোগাযোগ।
+
+তাই প্রতিটি device আমরা carefully
+diagnose করে repair করার চেষ্টা করি।
+
+</p>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<strong>01</strong>
+
+<p>
+Careful Diagnosis
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<strong>02</strong>
+
+<p>
+Professional Tools
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<strong>03</strong>
+
+<p>
+Precision Repair
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<strong>04</strong>
+
+<p>
+Customer Support
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="contact-box">
+
+<h2>
+Need Your Phone Repaired?
+</h2>
+
+<p>
+আজই যোগাযোগ করুন Shree Mobile Care-এর সাথে।
+</p>
+
+<a
+class="phone-number"
+href="tel:01862505734">
+
+01862505734
+
+</a>
+
+<br><br>
+
+<a
+href="tel:01862505734"
+class="btn btn-primary">
+
+📞 CONTACT NOW
+
+</a>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+© 2026 Shree Mobile Care
+
+<br><br>
+
+Your Phone • Our Expertise
+
+</footer>
+
+
+</body>
+</html>
